@@ -6,6 +6,7 @@ import 'package:math_game/main.dart';
 import 'package:math_game/models/controller_chekc.dart';
 import 'package:math_game/models/list_of_keko1.dart';
 import 'package:math_game/models/packages_math.dart';
+import 'package:math_game/models/score_list.dart';
 
 import 'math_card.dart';
 
@@ -65,179 +66,200 @@ class _GameMathState extends State<GameMath> {
       result: 1,
     ),
   ];
-   int _counter = 10;
-  Timer _timer;
-
-  void _startTimer() {
-    _counter = 10;
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_counter > 0) {
-          _counter--;
-        } else {
-          _timer.cancel();
-        }
-      });
-    });
-    
-  }
+  
   @override
   Widget build(BuildContext context) {
     _createRandomNumber();
-   
+
     //_startTimer();
-    return Column(
-      children: [
-      
-        Padding(
-          padding: const EdgeInsets.only(top:30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              
-              Container(
-                width: 130,
-                height: 300,
-                child: ListView(
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          _deneme(list[0].number, list);
-                        },
-                        child: Visibility(
-                          visible: list[list[0].number].karo,
-                          child: MathCard(
-                              myKeko,
-                              list[0].number,
-                              myKeko[list[0].number].operatorselector,
-                              list[list[0].number].bro),
-                        )),
-                    GestureDetector(
-                      onTap: () {
-                        _deneme(list[1].number, list);
-                      },
-                      child: Visibility(
-                        visible: list[list[1].number].karo,
-                        child: MathCard(
-                          myKeko,
-                          list[1].number,
-                          myKeko[list[1].number].operatorselector,
-                          list[list[1].number].bro,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _deneme(
-                          list[2].number,
-                          list,
-                        );
-                      },
-                      child: Visibility(
-                        visible: list[list[2].number].karo,
-                        child: MathCard(
-                          myKeko,
-                          list[2].number,
-                          myKeko[list[2].number].operatorselector,
-                          list[list[2].number].bro,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _deneme(list[3].number, list);
-                      },
-                      child: Visibility(
-                        visible: list[list[3].number].karo,
-                        child: MathCard(
-                          myKeko,
-                          list[3].number,
-                          myKeko[list[3].number].operatorselector,
-                          list[list[3].number].bro,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 130,
-                height: 300,
-                child: ListView(
+    return count[0].counter != 0
+        ? Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Visibility(
-                      visible: list[list[4].number].karo,
-                      child: GestureDetector(
-                        onTap: () {
-                          _deneme(list[4].number, list);
-                        },
-                        child: MathCard(
-                          myKeko,
-                          list[4].number,
-                          myKeko[list[4].number].operatorselector,
-                          list[list[4].number].bro,
-                        ),
+                    Container(
+                      width: 130,
+                      height: 300,
+                      child: ListView(
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                _deneme(list[0].number, list);
+                              },
+                              child: Visibility(
+                                visible: list[list[0].number].karo,
+                                child: MathCard(
+                                    myKeko,
+                                    list[0].number,
+                                    myKeko[list[0].number].operatorselector,
+                                    list[list[0].number].bro),
+                              )),
+                          GestureDetector(
+                            onTap: () {
+                              _deneme(list[1].number, list);
+                            },
+                            child: Visibility(
+                              visible: list[list[1].number].karo,
+                              child: MathCard(
+                                myKeko,
+                                list[1].number,
+                                myKeko[list[1].number].operatorselector,
+                                list[list[1].number].bro,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              _deneme(
+                                list[2].number,
+                                list,
+                              );
+                            },
+                            child: Visibility(
+                              visible: list[list[2].number].karo,
+                              child: MathCard(
+                                myKeko,
+                                list[2].number,
+                                myKeko[list[2].number].operatorselector,
+                                list[list[2].number].bro,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              _deneme(list[3].number, list);
+                            },
+                            child: Visibility(
+                              visible: list[list[3].number].karo,
+                              child: MathCard(
+                                myKeko,
+                                list[3].number,
+                                myKeko[list[3].number].operatorselector,
+                                list[list[3].number].bro,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Visibility(
-                      visible: list[list[5].number].karo,
-                      child: GestureDetector(
-                        onTap: () {
-                          _deneme(list[5].number, list);
-                        },
-                        child: MathCard(
-                          myKeko,
-                          list[5].number,
-                          myKeko[list[5].number].operatorselector,
-                          list[list[5].number].bro,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => _deneme(list[6].number, list),
-                      child: Visibility(
-                        visible: list[list[6].number].karo,
-                        child: MathCard(
-                          myKeko,
-                          list[6].number,
-                          myKeko[list[6].number].operatorselector,
-                          list[list[6].number].bro,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => _deneme(list[7].number, list),
-                      child: Visibility(
-                        visible: list[list[7].number].karo,
-                        child: MathCard(
-                          myKeko,
-                          list[7].number,
-                          myKeko[list[7].number].operatorselector,
-                          list[list[7].number].bro,
-                        ),
+                    Container(
+                      width: 130,
+                      height: 300,
+                      child: ListView(
+                        children: <Widget>[
+                          Visibility(
+                            visible: list[list[4].number].karo,
+                            child: GestureDetector(
+                              onTap: () {
+                                _deneme(list[4].number, list);
+                              },
+                              child: MathCard(
+                                myKeko,
+                                list[4].number,
+                                myKeko[list[4].number].operatorselector,
+                                list[list[4].number].bro,
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: list[list[5].number].karo,
+                            child: GestureDetector(
+                              onTap: () {
+                                _deneme(list[5].number, list);
+                              },
+                              child: MathCard(
+                                myKeko,
+                                list[5].number,
+                                myKeko[list[5].number].operatorselector,
+                                list[list[5].number].bro,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => _deneme(list[6].number, list),
+                            child: Visibility(
+                              visible: list[list[6].number].karo,
+                              child: MathCard(
+                                myKeko,
+                                list[6].number,
+                                myKeko[list[6].number].operatorselector,
+                                list[list[6].number].bro,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => _deneme(list[7].number, list),
+                            child: Visibility(
+                              visible: list[list[7].number].karo,
+                              child: MathCard(
+                                myKeko,
+                                list[7].number,
+                                myKeko[list[7].number].operatorselector,
+                                list[list[7].number].bro,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-             
-              
-            ],
-          ),
-        ),
-         RaisedButton(
+              RaisedButton(
                 onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                  count[0].content = 0;
+                  count[0].counter = 0;
+                  count[0].score = 0;
+                  count[0].missed = 0;
+                  //  Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
                   for (var i = 0; i < 8; i++) {
                     list[i].karo = true;
+                  }
+                  for (var i = 0; i < 8; i++) {
+                    list[i].bro = Colors.white;
+                  }
+                  for (var i = 0; i < 8; i++) {
+                    list[i].index = 0;
                   }
                 },
                 child: Text("Restart"),
               ),
-      ],
-    );
+            ],
+          )
+        : Center(
+            child: Column(
+              children: [
+                Text("SCORE: ${count[0].score}"),
+                Text("MİSSED: ${count[0].missed}"),
+                RaisedButton(
+                  onPressed: () {
+                    count[0].content = 0;
+                    count[0].counter = 0;
+                    count[0].score = 0;
+                    count[0].missed = 0;
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyApp()));
+                    for (var i = 0; i < 8; i++) {
+                      list[i].karo = true;
+                    }
+                    for (var i = 0; i < 8; i++) {
+                      list[i].bro = Colors.white;
+                    }
+                    for (var i = 0; i < 8; i++) {
+                      list[i].index = 0;
+                    }
+                  },
+                  child: Text("Restart"),
+                ),
+              ],
+            ),
+          );
   }
-var score=0;
+
+  var score = 0;
   var resultIndex;
   void _deneme(var indexcro, List<Keko1> x) {
     if (x[indexcro].index == 0) {
@@ -260,25 +282,25 @@ var score=0;
           setState(() {
             list[0].karo = false;
             list[1].karo = false;
-            score=score+10;
+            count[0].score = count[0].score + 10;
           });
         } else if (indexcro == 2 || indexcro == 3) {
           setState(() {
             list[2].karo = false;
             list[3].karo = false;
-            score=score+10;
+            count[0].score = count[0].score + 10;
           });
         } else if (indexcro == 4 || indexcro == 5) {
           setState(() {
             list[4].karo = false;
             list[5].karo = false;
-            score=score+10;
+            count[0].score = count[0].score + 10;
           });
         } else if (indexcro == 6 || indexcro == 7) {
           setState(() {
             list[6].karo = false;
             list[7].karo = false;
-            score=score+10;
+            count[0].score = count[0].score + 10;
           });
         }
 
@@ -295,7 +317,10 @@ var score=0;
             list[k].index = 0;
           });
         }
-        score=score-10;
+        if (count[0].score != 0) {
+          count[0].score = count[0].score - 10;
+        }
+        count[0].missed = count[0].missed + 1;
       }
     }
   }
@@ -306,72 +331,70 @@ var score=0;
     int z = 40;
 
     for (var i = 0; i < 4; i++) {
-      
-        while (myKeko[x].result != myKeko[y].result) {
-          myKeko[x].number1 = new Random().nextInt(z) + 1;
-          myKeko[x].number2 = new Random().nextInt(z) + 1;
-          myKeko[y].number1 = new Random().nextInt(z) + 1;
-          myKeko[y].number2 = new Random().nextInt(z) + 1;
+      while (myKeko[x].result != myKeko[y].result) {
+        myKeko[x].number1 = new Random().nextInt(z) + 1;
+        myKeko[x].number2 = new Random().nextInt(z) + 1;
+        myKeko[y].number1 = new Random().nextInt(z) + 1;
+        myKeko[y].number2 = new Random().nextInt(z) + 1;
 
-          if (myKeko[x].operatorselector == 0) {
-            myKeko[x].result = myKeko[x].number1 + myKeko[x].number2;
-          }
-          if (myKeko[y].operatorselector == 0) {
-            myKeko[y].result = myKeko[y].number1 + myKeko[y].number2;
-          }
-          if (myKeko[x].operatorselector == 1) {
-            while (myKeko[x].number1 < myKeko[x].number2) {
-              myKeko[x].number1 = new Random().nextInt(z);
-              myKeko[x].number2 = new Random().nextInt(z);
-            }
-            myKeko[x].result = myKeko[x].number1 - myKeko[x].number2;
-          }
-          if (myKeko[y].operatorselector == 1) {
-            while (myKeko[y].number1 < myKeko[y].number2) {
-              myKeko[y].number1 = new Random().nextInt(z);
-              myKeko[y].number2 = new Random().nextInt(z);
-            }
-            myKeko[y].result = myKeko[y].number1 - myKeko[y].number2;
-          }
-          if (myKeko[x].operatorselector == 2) {
-            while (myKeko[x].number1 % myKeko[x].number2 != 0) {
-              myKeko[x].number1 = new Random().nextInt(z) + 1;
-              myKeko[x].number2 = new Random().nextInt(z) + 1;
-            }
-
-            myKeko[x].result = myKeko[x].number1 / myKeko[x].number2;
-          }
-          if (myKeko[y].operatorselector == 2) {
-            while (myKeko[y].number1 % myKeko[y].number2 != 0) {
-              myKeko[y].number1 = new Random().nextInt(z) + 1;
-              myKeko[y].number2 = new Random().nextInt(z) + 1;
-            }
-
-            myKeko[y].result = myKeko[y].number1 / myKeko[y].number2;
-          }
-          if (myKeko[x].operatorselector == 3) {
-            while (myKeko[x].number1 > 15) {
-              myKeko[x].number1 = new Random().nextInt(15);
-            }
-            while (myKeko[x].number2 > 15) {
-              myKeko[x].number2 = new Random().nextInt(15);
-            }
-            myKeko[x].result = myKeko[x].number1 * myKeko[x].number2;
-          }
-          if (myKeko[y].operatorselector == 3) {
-            while (myKeko[y].number1 > 15) {
-              myKeko[y].number1 = new Random().nextInt(15);
-            }
-            while (myKeko[y].number2 > 15) {
-              myKeko[y].number2 = new Random().nextInt(15);
-            }
-
-            myKeko[y].result = myKeko[y].number1 * myKeko[y].number2;
-          }
+        if (myKeko[x].operatorselector == 0) {
+          myKeko[x].result = myKeko[x].number1 + myKeko[x].number2;
         }
-        x = x + 2;
-        y = y + 2;
-     
+        if (myKeko[y].operatorselector == 0) {
+          myKeko[y].result = myKeko[y].number1 + myKeko[y].number2;
+        }
+        if (myKeko[x].operatorselector == 1) {
+          while (myKeko[x].number1 < myKeko[x].number2) {
+            myKeko[x].number1 = new Random().nextInt(z);
+            myKeko[x].number2 = new Random().nextInt(z);
+          }
+          myKeko[x].result = myKeko[x].number1 - myKeko[x].number2;
+        }
+        if (myKeko[y].operatorselector == 1) {
+          while (myKeko[y].number1 < myKeko[y].number2) {
+            myKeko[y].number1 = new Random().nextInt(z);
+            myKeko[y].number2 = new Random().nextInt(z);
+          }
+          myKeko[y].result = myKeko[y].number1 - myKeko[y].number2;
+        }
+        if (myKeko[x].operatorselector == 2) {
+          while (myKeko[x].number1 % myKeko[x].number2 != 0) {
+            myKeko[x].number1 = new Random().nextInt(z) + 1;
+            myKeko[x].number2 = new Random().nextInt(z) + 1;
+          }
+
+          myKeko[x].result = myKeko[x].number1 / myKeko[x].number2;
+        }
+        if (myKeko[y].operatorselector == 2) {
+          while (myKeko[y].number1 % myKeko[y].number2 != 0) {
+            myKeko[y].number1 = new Random().nextInt(z) + 1;
+            myKeko[y].number2 = new Random().nextInt(z) + 1;
+          }
+
+          myKeko[y].result = myKeko[y].number1 / myKeko[y].number2;
+        }
+        if (myKeko[x].operatorselector == 3) {
+          while (myKeko[x].number1 > 15) {
+            myKeko[x].number1 = new Random().nextInt(15);
+          }
+          while (myKeko[x].number2 > 15) {
+            myKeko[x].number2 = new Random().nextInt(15);
+          }
+          myKeko[x].result = myKeko[x].number1 * myKeko[x].number2;
+        }
+        if (myKeko[y].operatorselector == 3) {
+          while (myKeko[y].number1 > 15) {
+            myKeko[y].number1 = new Random().nextInt(15);
+          }
+          while (myKeko[y].number2 > 15) {
+            myKeko[y].number2 = new Random().nextInt(15);
+          }
+
+          myKeko[y].result = myKeko[y].number1 * myKeko[y].number2;
+        }
+      }
+      x = x + 2;
+      y = y + 2;
     }
   }
 }
