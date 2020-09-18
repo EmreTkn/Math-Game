@@ -1,13 +1,10 @@
-import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:math_game/main.dart';
 import 'package:math_game/models/controller_chekc.dart';
 import 'package:math_game/models/list_of_keko1.dart';
 import 'package:math_game/models/packages_math.dart';
 import 'package:math_game/models/score_list.dart';
-
 import 'math_card.dart';
 
 class GameMath extends StatefulWidget {
@@ -209,6 +206,7 @@ class _GameMathState extends State<GameMath> {
                 ),
               ),
               RaisedButton(
+                color:Colors.purple[200],
                 onPressed: () {
                   count[0].content = 0;
                   count[0].counter = 0;
@@ -219,44 +217,55 @@ class _GameMathState extends State<GameMath> {
                     list[i].karo = true;
                   }
                   for (var i = 0; i < 8; i++) {
-                    list[i].bro = Colors.white;
+                    list[i].bro = Colors.purple[200];
                   }
                   for (var i = 0; i < 8; i++) {
                     list[i].index = 0;
                   }
                 },
-                child: Text("Restart"),
+                child: Text("Restart",style: TextStyle(color:Colors.white,fontSize: 30),),
               ),
             ],
           )
-        : Center(
-            child: Column(
-              children: [
-                Text("SCORE: ${count[0].score}"),
-                Text("MİSSED: ${count[0].missed}"),
-                RaisedButton(
-                  onPressed: () {
-                    count[0].content = 0;
-                    count[0].counter = 0;
-                    count[0].score = 0;
-                    count[0].missed = 0;
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
-                    for (var i = 0; i < 8; i++) {
-                      list[i].karo = true;
-                    }
-                    for (var i = 0; i < 8; i++) {
-                      list[i].bro = Colors.white;
-                    }
-                    for (var i = 0; i < 8; i++) {
-                      list[i].index = 0;
-                    }
-                  },
-                  child: Text("Restart"),
-                ),
-              ],
+        : Container(
+          padding: EdgeInsets.only(top:200),
+          child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:13),
+                    child: Text("SCORE: ${count[0].score}",style: TextStyle(color:Colors.purple[100],fontSize: 40,)),
+                  ),
+                  Text("MİSSED: ${count[0].missed}",style: TextStyle(color:Colors.purple[100],fontSize: 40),),
+                  Padding(
+                    padding: const EdgeInsets.only(top:180),
+                    child: RaisedButton(
+                      color: Colors.purple[200],
+                      
+                      onPressed: () {
+                        count[0].content = 0;
+                        count[0].counter = 0;
+                        count[0].score = 0;
+                        count[0].missed = 0;
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyApp()));
+                        for (var i = 0; i < 8; i++) {
+                          list[i].karo = true;
+                        }
+                        for (var i = 0; i < 8; i++) {
+                          list[i].bro = Colors.purple[200];
+                        }
+                        for (var i = 0; i < 8; i++) {
+                          list[i].index = 0;
+                        }
+                      },
+                      child: Text("Restart",style: TextStyle(color:Colors.white,fontSize: 30,),),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          );
+        );
   }
 
   var score = 0;
@@ -306,14 +315,14 @@ class _GameMathState extends State<GameMath> {
 
         for (var k = 0; k < 8; k++) {
           setState(() {
-            list[k].bro = Colors.white;
+            list[k].bro =Colors.purple[200];
             list[k].index = 0;
           });
         }
       } else if (resultIndex != myKeko[indexcro].result) {
         for (var k = 0; k < 8; k++) {
           setState(() {
-            list[k].bro = Colors.white;
+            list[k].bro = Colors.purple[200];
             list[k].index = 0;
           });
         }

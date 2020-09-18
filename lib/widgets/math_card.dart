@@ -33,12 +33,13 @@ class _MathCardState extends State<MathCard> {
               child: Row(children: [
                 Text(
                   "${widget.mathCard[widget.index].number1}",
-                  style: Theme.of(context).textTheme.title,
+                  style: TextStyle(color: Colors.white,fontSize: 26)
+                  
                 ),
                 IconSelector(widget.iconSelector),
                 Text(
                   "${widget.mathCard[widget.index].number2}",
-                  style: Theme.of(context).textTheme.title,
+                  style: TextStyle(color: Colors.white,fontSize: 26)
                 ),
               ])),
         
